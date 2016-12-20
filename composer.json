@@ -1,5 +1,5 @@
 {
-    "name": "klermonte/zerg",
+    "name": "arhitector/zerg",
     "description": "PHP structured binary parser",
     "keywords": ["binary"],
     "minimum-stability": "dev",

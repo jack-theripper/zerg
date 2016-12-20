@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Conditional field can represent one of other given field or field collection depending on value of related field.
@@ -42,10 +42,10 @@ class Conditional extends AbstractField
      * Resolve needed field instance and call it's parse method.
      *
      * @api
-     * @param AbstractStream $stream Stream from which resolved field reads.
+     * @param StreamInterface $stream Stream from which resolved field reads.
      * @return mixed Value returned by resolved field.
      */
-    public function parse(AbstractStream $stream)
+    public function parse(StreamInterface $stream)
     {
         $field = $this->resolveField();
 

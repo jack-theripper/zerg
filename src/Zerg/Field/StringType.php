@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * String represents string type data.
@@ -18,10 +18,10 @@ class StringType extends Scalar
 	/**
      * Read string from stream as it is.
      *
-     * @param AbstractStream $stream Stream from which read.
+     * @param StreamInterface $stream Stream from which read.
      * @return string Returned string.
      */
-    public function read(AbstractStream $stream)
+    public function read(StreamInterface $stream)
     {
         return $stream->getBuffer()->read($this->getSize(), $this->getEndian());
     }

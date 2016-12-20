@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Class Arr repeat given field needed times.
@@ -51,11 +51,11 @@ class Arr extends Collection
      * Call parse method on arrayed field needed times.
      *
      * @api
-     * @param AbstractStream $stream Stream from which children read.
+     * @param StreamInterface $stream Stream from which children read.
      * @return array Array of parsed values.
      * @since 1.0
      */
-    public function parse(AbstractStream $stream)
+    public function parse(StreamInterface $stream)
     {
         try {
             return parent::parse($stream);

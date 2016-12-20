@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Padding field helps to skip some data not reading it.
@@ -19,10 +19,10 @@ class Padding extends Scalar
     /**
      * Tells current Stream to skip given amount of bits.
      *
-     * @param AbstractStream $stream Stream which which should skip data.
+     * @param StreamInterface $stream Stream which which should skip data.
      * @return null To detect that no value has been read.
      */
-    public function read(AbstractStream $stream)
+    public function read(StreamInterface $stream)
     {
         $stream->skip($this->getSize());
         return null;

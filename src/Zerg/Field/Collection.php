@@ -3,7 +3,7 @@
 namespace Zerg\Field;
 
 use Zerg\DataSet;
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Class Collection compose other types of fields.
@@ -41,10 +41,10 @@ class Collection extends AbstractField implements \ArrayAccess, \Iterator
      * Recursively call parse method of all children and store values in associated DataSet.
      *
      * @api
-     * @param AbstractStream $stream Stream from which children read.
+     * @param StreamInterface $stream Stream from which children read.
      * @return array Array of parsed values.
      */
-    public function parse(AbstractStream $stream)
+    public function parse(StreamInterface $stream)
     {
         if (!($this->dataSet instanceof DataSet)) {
             $this->dataSet = new DataSet;

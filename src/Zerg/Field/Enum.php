@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Enum field return one of given values depends on read value.
@@ -33,11 +33,11 @@ class Enum extends IntType
     /**
      * Read key from Stream, and return value by this key or default value.
      *
-     * @param AbstractStream $stream Stream from which resolved field reads.
+     * @param StreamInterface $stream Stream from which resolved field reads.
      * @return object|integer|double|string|array|boolean|callable Value by read key or default value if present.
      * @throws InvalidKeyException If read key is not exist and default value is not presented.
      */
-    public function read(AbstractStream $stream)
+    public function read(StreamInterface $stream)
     {
         $key = parent::read($stream);
         $values = $this->getValues();

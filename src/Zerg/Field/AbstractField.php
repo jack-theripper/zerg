@@ -3,7 +3,7 @@
 namespace Zerg\Field;
 
 use Zerg\DataSet;
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * This abstract class represents any type of field - an entity that takes, processes and
@@ -34,10 +34,10 @@ abstract class AbstractField
      * Read and process data from Stream.
      *
      * @api
-     * @param AbstractStream $stream Stream from which field should read.
+     * @param StreamInterface $stream Stream from which field should read.
      * @return mixed Processed value.
      */
-    abstract public function parse(AbstractStream $stream);
+    abstract public function parse(StreamInterface $stream);
 
     /**
      * Associate given values to appropriate class properties.

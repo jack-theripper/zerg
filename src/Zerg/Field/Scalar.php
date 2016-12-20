@@ -3,7 +3,7 @@
 namespace Zerg\Field;
 
 use PhpBio\Endian;
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Scalar field represents any simple and atomic part of data.
@@ -56,10 +56,10 @@ abstract class Scalar extends AbstractField
      * This is abstract method, so each implementation should return it's own
      * type of value.
      *
-     * @param AbstractStream $stream Stream from which read.
+     * @param StreamInterface $stream Stream from which read.
      * @return int|string|null Value type depend by implementation.
      */
-    abstract public function read(AbstractStream $stream);
+    abstract public function read(StreamInterface $stream);
 
 
     public function __construct($size, $options = [])
@@ -161,10 +161,10 @@ abstract class Scalar extends AbstractField
      * Reads and process value from Stream.
      *
      * @api
-     * @param AbstractStream $stream Stream from which read.
+     * @param StreamInterface $stream Stream from which read.
      * @return mixed The final value.
      */
-    public function parse(AbstractStream $stream)
+    public function parse(StreamInterface $stream)
     {
         $value = $this->format($this->read($stream));
         $this->validate($value);

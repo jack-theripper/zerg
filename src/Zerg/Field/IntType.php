@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\AbstractStream;
+use Zerg\StreamInterface;
 
 /**
  * Int field read data from Stream and cast it to integer.
@@ -41,10 +41,10 @@ class IntType extends Scalar
     /**
      * Read data from Stream and cast it to integer.
      *
-     * @param AbstractStream $stream Stream from which read.
+     * @param StreamInterface $stream Stream from which read.
      * @return int Result value.
      */
-    public function read(AbstractStream $stream)
+    public function read(StreamInterface $stream)
     {
         return $stream->getBuffer()->readInt($this->getSize(), $this->getSigned(), $this->getEndian());
     }

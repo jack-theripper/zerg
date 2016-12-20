@@ -8,7 +8,11 @@
         {
             "name": "Pavel Klementyev",
             "email": "klimchek@gmail.com"
-        }
+        },
+	    {
+		    "name": "Dmitry Arhitector",
+		    "email": "dmitry.arhitector@yandex.ru"
+	    }
     ],
     "require": {
         "php": ">=5.4.0"

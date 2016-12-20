@@ -2,6 +2,9 @@
 
 namespace Zerg\Buffer;
 
+use InvalidArgumentException;
+use Zerg\Endian;
+
 /**
  * Class ByteBuffer
  *
@@ -29,15 +32,17 @@ class ByteBuffer implements BufferInterface
      * @var int
      */
 	protected $position;
-
-    /**
-     * @param resource $handle
-     * @param int $endian
-     */
-    public function __construct($handle = '', $endian = null)
+	
+	/**
+	 * @param resource $handle
+	 * @param int      $endian
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+    public function __construct($handle, $endian = Endian::ENDIAN_BIG)
     {
-        if ( ! is_resource($contents)) {
-            throw new \InvalidArgumentException('The $handle must be a resource type.');
+        if ( ! is_resource($handle)) {
+            throw new InvalidArgumentException('The handle must be a resource type.');
         }
 	    
         $this->handle = $handle;
@@ -47,7 +52,8 @@ class ByteBuffer implements BufferInterface
             $endian = Endian::getMachineEndian();
         }
 
-        $this->setPosition(0)->setEndian($endian);
+        $this->setPosition(0);
+        $this->setEndian($endian);
     }
 
     /**

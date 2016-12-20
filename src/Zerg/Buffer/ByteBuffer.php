@@ -3,6 +3,7 @@
 namespace Zerg\Buffer;
 
 use InvalidArgumentException;
+use OutOfBoundsException;
 use Zerg\Endian;
 
 /**
@@ -65,16 +66,21 @@ class ByteBuffer implements BufferInterface
     {
         return $this->position;
     }
-
-    /**
-     * @param int $position
-     * @return $this
-     */
+	
+	/**
+	 * Sets the current position.
+	 *
+	 * @param int $position
+	 *
+	 * @return $this
+	 * @throws \OutOfBoundsException
+	 */
     public function setPosition($position)
     {
         if ($position > $this->size) {
-            throw new \OutOfBoundsException('Exceeds the boundary of the file.');
+            throw new OutOfBoundsException('Exceeds the boundary of the file.');
         }
+	    
         $this->position = (int) $position;
         fseek($this->handle, $position);
 

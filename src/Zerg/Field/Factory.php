@@ -46,7 +46,11 @@ class Factory
 
     public static function get($array)
     {
-        if (!is_array($array)) {
+        if ($array instanceof AbstractField) {
+        	return $array;
+        }
+    	
+    	if (!is_array($array)) {
             throw new ConfigurationException('Unknown element declaration');
         }
 

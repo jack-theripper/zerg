@@ -21,6 +21,7 @@ class FileStream implements StreamInterface
 	 * @param string $path Path of file.
 	 *
 	 * @throws \RuntimeException
+	 * @throws \InvalidArgumentException
 	 */
     public function __construct($path)
     {

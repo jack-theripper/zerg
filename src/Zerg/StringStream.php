@@ -1,6 +1,6 @@
 <?php
 
-namespace Zerg\Stream;
+namespace Zerg;
 
 use PhpBio\BitBuffer;
 

@@ -4,7 +4,7 @@ namespace Zerg\Field;
 
 
 use Zerg\DataSet;
-use Zerg\Stream\StringStream;
+use Zerg\StringStream;
 
 class ArrTest extends \PHPUnit_Framework_TestCase
 {

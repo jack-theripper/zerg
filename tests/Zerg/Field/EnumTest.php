@@ -2,7 +2,7 @@
 
 namespace Zerg\Field;
 
-use Zerg\Stream\StringStream;
+use Zerg\StringStream;
 
 class EnumTest extends \PHPUnit_Framework_TestCase
 {

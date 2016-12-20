@@ -2,8 +2,8 @@
 
 namespace Zerg\Field;
 
-use PhpBio\Endian;
-use Zerg\Stream\StringStream;
+use Zerg\Endian;
+use Zerg\StringStream;
 
 class StringTest extends \PHPUnit_Framework_TestCase
 {

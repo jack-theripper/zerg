@@ -25,7 +25,7 @@ $fieldCollection = new \Zerg\Field\Collection([
 ]);
 
 // Wrap your data in one of zerg streams
-$sourceStream = new \Zerg\Stream\StringStream("Hello from zerg123456");
+$sourceStream = new \Zerg\StringStream("Hello from zerg123456");
 
 //Get your data structure
 $data  = $fieldCollection->parse($sourceStream);
@@ -207,7 +207,7 @@ $fieldCollection = new \Zerg\Field\Collection([
     'count' => ['string', 2],
     'intValue' => ['arr', '/count', ['int', 8]]
 ]);
-$sourceStream = new \Zerg\Stream\StringStream("101234567890");
+$sourceStream = new \Zerg\StringStream("101234567890");
 $data = $fieldCollection->parse($sourceStream);
 print_r($data);
 /*
@@ -243,7 +243,7 @@ $fieldCollection = new \Zerg\Field\Collection([
         ]
     ]
 ]);
-$sourceStream = new \Zerg\Stream\StringStream("101234567890");
+$sourceStream = new \Zerg\StringStream("101234567890");
 $data = $fieldCollection->parse($sourceStream);
 print_r($data);
 /*

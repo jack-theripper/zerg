@@ -3,7 +3,7 @@
 namespace Zerg\Field;
 
 use PhpBio\Endian;
-use Zerg\Stream\StringStream;
+use Zerg\StringStream;
 
 class IntTest extends \PHPUnit_Framework_TestCase
 {

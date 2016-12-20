@@ -3,7 +3,7 @@
 namespace Zerg\Field;
 
 use Zerg\DataSet;
-use Zerg\Stream\StringStream;
+use Zerg\StringStream;
 
 class ConditionalTest extends \PHPUnit_Framework_TestCase
 {

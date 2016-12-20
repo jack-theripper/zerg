@@ -13,11 +13,11 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             'b' => ['string', 10]
         ]);
 
-        $this->assertInstanceOf('\\Zerg\\Field\\Int', $collection['a']);
-        $this->assertInstanceOf('\\Zerg\\Field\\String', $collection['b']);
+        $this->assertInstanceOf('\\Zerg\\Field\\IntType', $collection['a']);
+        $this->assertInstanceOf('\\Zerg\\Field\\StringType', $collection['b']);
         $this->assertFalse(isset($collection['c']));
         $collection['c'] = new IntType(1);
-        $this->assertInstanceOf('\\Zerg\\Field\\Int', $collection['c']);
+        $this->assertInstanceOf('\\Zerg\\Field\\IntType', $collection['c']);
         unset($collection['a']);
         $this->assertFalse(isset($collection['a']));
     }
@@ -25,8 +25,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function testIterator()
     {
         $types = [
-            'a' => '\\Zerg\\Field\\Int',
-            'b' => '\\Zerg\\Field\\String',
+            'a' => '\\Zerg\\Field\\IntType',
+            'b' => '\\Zerg\\Field\\StringType',
             'c' => '\\Zerg\\Field\\Collection'
         ];
 
@@ -73,9 +73,9 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             ]]
         ]);
 
-        $this->assertInstanceOf('\\Zerg\\Field\\Int', $collection['a']);
-        $this->assertInstanceOf('\\Zerg\\Field\\String', $collection['b']);
-        $this->assertInstanceOf('\\Zerg\\Field\\Int', $collection['c']['d']);
+        $this->assertInstanceOf('\\Zerg\\Field\\IntType', $collection['a']);
+        $this->assertInstanceOf('\\Zerg\\Field\\StringType', $collection['b']);
+        $this->assertInstanceOf('\\Zerg\\Field\\IntType', $collection['c']['d']);
         $this->assertInstanceOf('\\Zerg\\Field\\Collection', $collection['c']);
         $this->assertEquals(16, $collection['e']->getCount());
         $this->assertInstanceOf('\\Zerg\\Field\\Arr', $collection['f']);
@@ -164,7 +164,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \PHPUnit_Framework_Error
+     * @expectedException \TypeError
      */
     public function testCreationError()
     {

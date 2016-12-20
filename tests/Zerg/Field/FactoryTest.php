@@ -7,9 +7,9 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     public function types()
     {
         return [
-            [['int', 1],                                      '\\Zerg\\Field\Int'],
-            [['int', 1, ['signed' => true]],                  '\\Zerg\\Field\Int'],
-            [['string', 1, ['assert' => 'qwe']],              '\\Zerg\\Field\String'],
+            [['int', 1],                                      '\\Zerg\\Field\IntType'],
+            [['int', 1, ['signed' => true]],                  '\\Zerg\\Field\IntType'],
+            [['string', 1, ['assert' => 'qwe']],              '\\Zerg\\Field\StringType'],
             [['enum', 1, [], ['default' => 1]],               '\\Zerg\\Field\Enum'],
             [['conditional', 1, [], ['default' => []]],       '\\Zerg\\Field\conditional'],
             [['padding', 1],                                  '\\Zerg\\Field\padding'],

@@ -12,9 +12,10 @@ use Zerg\Stream\AbstractStream;
  * @since 0.1
  * @package Zerg\Field
  */
-class String extends Scalar
+class StringType extends Scalar
 {
-    /**
+    
+	/**
      * Read string from stream as it is.
      *
      * @param AbstractStream $stream Stream from which read.
@@ -24,4 +25,5 @@ class String extends Scalar
     {
         return $stream->getBuffer()->read($this->getSize(), $this->getEndian());
     }
+	
 }

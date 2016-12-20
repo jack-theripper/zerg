@@ -15,7 +15,8 @@ class Factory
 	 * @var array fields to class name
 	 */
     protected static $mapField = [
-    	'int' => 'IntType'
+	    'int'    => 'IntType',
+	    'string' => 'StringType'
     ];
 	
 	/**

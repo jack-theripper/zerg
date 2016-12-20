@@ -9,14 +9,14 @@ class StringTest extends \PHPUnit_Framework_TestCase
 {
     public function testRead()
     {
-        $string = new String(16);
+        $string = new StringType(16);
         $stream = new StringStream('abc');
         $this->assertEquals('ab', $string->read($stream));
     }
 
     public function testAssertion()
     {
-        $string = new String(8, ['assert' => '1']);
+        $string = new StringType(8, ['assert' => '1']);
         $this->assertTrue($string->validate('1'));
     }
 
@@ -25,7 +25,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
      * */
     public function testAssertionException()
     {
-        (new String(8, ['assert' => '2']))->parse(new StringStream('1'));
+        (new StringType(8, ['assert' => '2']))->parse(new StringStream('1'));
     }
 
     public function testMassConfig()
@@ -33,8 +33,8 @@ class StringTest extends \PHPUnit_Framework_TestCase
         $formatter = function ($value) {
             return $value . ';';
         };
-        $string1 = new String(30, ['assert' => 'qwer', 'endian' => Endian::ENDIAN_BIG, 'formatter' => $formatter]);
-        $string2 = new String([
+        $string1 = new StringType(30, ['assert' => 'qwer', 'endian' => Endian::ENDIAN_BIG, 'formatter' => $formatter]);
+        $string2 = new StringType([
             'size' => 30,
             'assert' => 'qwer',
             'endian' => Endian::ENDIAN_BIG,

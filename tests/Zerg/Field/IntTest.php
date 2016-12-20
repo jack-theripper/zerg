@@ -9,7 +9,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
 {
     public function testConfiguration()
     {
-        $int = new Int(1, ['signed' => true]);
+        $int = new IntType(1, ['signed' => true]);
         $this->assertTrue($int->getSigned());
         $int->setSigned(false);
         $this->assertFalse($int->getSigned());
@@ -20,7 +20,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
     public function testRead()
     {
         $stream = new StringStream("\x03\x80\x80");
-        $int = new Int('byte', ['signed' => true]);
+        $int = new IntType('byte', ['signed' => true]);
         $this->assertSame(3, $int->read($stream));
         $this->assertSame(-128, $int->read($stream));
         $int->setSigned(false);
@@ -30,13 +30,13 @@ class IntTest extends \PHPUnit_Framework_TestCase
     public function testReadBits()
     {
         $stream = new StringStream("\x73\xda\xf4\xdc\0");
-        $int = new Int('nibble');
+        $int = new IntType('nibble');
         $values = [7, 3, 13, 10, 15, 4];
         foreach ($values as $expected) {
             $this->assertSame($expected, $int->read($stream));
         }
 
-        $this->assertSame(0xdc, (new Int('byte'))->read($stream));
+        $this->assertSame(0xdc, (new IntType('byte'))->read($stream));
 
         $int->setSize('semi_nibble');
         $stream->getBuffer()->setPosition(0);
@@ -52,7 +52,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
      * */
     public function testOutOfBoundary()
     {
-        $int = new Int('nibble');
+        $int = new IntType('nibble');
         $newStream = new StringStream("\x31");
         $int->read($newStream);
         $this->assertSame(1, $int->read($newStream));
@@ -65,7 +65,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
      * */
     public function testInvalidOptionSize($invalidValue)
     {
-        $int = new Int($invalidValue);
+        $int = new IntType($invalidValue);
         $int->getSize();
     }
 
@@ -75,7 +75,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
      * */
     public function testLargeIntException()
     {
-        $int = new Int(65);
+        $int = new IntType(65);
         $int->read(new StringStream('foo'));
     }
 
@@ -89,7 +89,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
 
     public function testAssertion()
     {
-        $int = new Int(8, ['assert' => 49]);
+        $int = new IntType(8, ['assert' => 49]);
         $this->assertTrue($int->validate(49));
     }
 
@@ -98,7 +98,7 @@ class IntTest extends \PHPUnit_Framework_TestCase
      * */
     public function testAssertionException()
     {
-        (new Int(8, ['assert' => 50]))->parse(new StringStream('1'));
+        (new IntType(8, ['assert' => 50]))->parse(new StringStream('1'));
     }
 
     /**
@@ -106,14 +106,14 @@ class IntTest extends \PHPUnit_Framework_TestCase
      * */
     public function testCallbackAssertionException()
     {
-        (new Int(8, ['assert' => function ($val, Int $field) {
+        (new IntType(8, ['assert' => function ($val, IntType $field) {
             return $val !== 49;
         }]))->parse(new StringStream('1'));
     }
 
     public function testEndian()
     {
-        $field = new Int('byte', ['endian' => Endian::ENDIAN_BIG]);
+        $field = new IntType('byte', ['endian' => Endian::ENDIAN_BIG]);
         $this->assertEquals(Endian::ENDIAN_BIG, $field->getEndian());
         $this->assertEquals(Endian::ENDIAN_LITTLE, $field->setEndian(Endian::ENDIAN_LITTLE)->getEndian());
     }
@@ -124,13 +124,13 @@ class IntTest extends \PHPUnit_Framework_TestCase
      * */
     public function testEndianException()
     {
-        $field = new Int('byte', ['endian' => 'little']);
+        $field = new IntType('byte', ['endian' => 'little']);
     }
 
     public function testMassConfig()
     {
-        $int1 = new Int(32, ['assert' => 10, 'signed' => true, 'endian' => Endian::ENDIAN_BIG]);
-        $int2 = new Int([
+        $int1 = new IntType(32, ['assert' => 10, 'signed' => true, 'endian' => Endian::ENDIAN_BIG]);
+        $int2 = new IntType([
             'size' => 32,
             'assert' => 10,
             'signed' => true,

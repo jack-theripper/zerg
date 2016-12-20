@@ -10,9 +10,10 @@ use Zerg\Stream\AbstractStream;
  * @since 0.1
  * @package Zerg\Field
  */
-class Int extends Scalar
+class IntType extends Scalar
 {
-    /**
+    
+	/**
      * @var bool Whether field is signed. If so, value form stream will be casted to signed integer.
      */
     protected $signed;
@@ -47,4 +48,5 @@ class Int extends Scalar
     {
         return $stream->getBuffer()->readInt($this->getSize(), $this->getSigned(), $this->getEndian());
     }
+	
 }

@@ -16,7 +16,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\\Zerg\\Field\\Int', $collection['a']);
         $this->assertInstanceOf('\\Zerg\\Field\\String', $collection['b']);
         $this->assertFalse(isset($collection['c']));
-        $collection['c'] = new Int(1);
+        $collection['c'] = new IntType(1);
         $this->assertInstanceOf('\\Zerg\\Field\\Int', $collection['c']);
         unset($collection['a']);
         $this->assertFalse(isset($collection['a']));

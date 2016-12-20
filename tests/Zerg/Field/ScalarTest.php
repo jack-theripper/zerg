@@ -12,7 +12,7 @@ class ScalarTest extends \PHPUnit_Framework_TestCase
             return $value - 2 * 8;
         };
 
-        $field = new Int('byte', [
+        $field = new IntType('byte', [
             'signed' => true,
             'formatter' => $callback
         ]);
@@ -25,7 +25,7 @@ class ScalarTest extends \PHPUnit_Framework_TestCase
     public function testValueCallback()
     {
         $stream = new StringStream('123abcdefgqwertyahnytjssdadfkjhb');
-        $field = new Int('byte', [
+        $field = new IntType('byte', [
             'formatter' => function($value) {
                 return $value - 2 * 8;
             }

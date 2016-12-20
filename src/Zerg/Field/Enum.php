@@ -10,7 +10,7 @@ use Zerg\Stream\AbstractStream;
  * @since 0.1
  * @package Zerg\Field
  */
-class Enum extends Int
+class Enum extends IntType
 {
     /**
      * @var array Array of possible values. Keys should by integer.

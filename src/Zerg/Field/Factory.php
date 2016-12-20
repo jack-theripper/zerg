@@ -10,7 +10,15 @@ namespace Zerg\Field;
  */
 class Factory
 {
-    /**
+	
+	/**
+	 * @var array fields to class name
+	 */
+    protected static $mapField = [
+    	'int' => 'IntType'
+    ];
+	
+	/**
      * Create field instance by its declaration.
      *
      * @param array $declaration Field declaration.
@@ -20,8 +28,13 @@ class Factory
     private static function instantiate(array $declaration)
     {
         $fieldType = array_shift($declaration);
-
-        $class = "\\Zerg\\Field\\" . ucfirst(strtolower($fieldType));
+	
+	    $class = "\\Zerg\\Field\\" . ucfirst(strtolower($fieldType));
+	    
+        if (isset(self::$mapField[$fieldType])) {
+        	$class = "\\Zerg\\Field\\" . self::$mapField[$fieldType];
+        }
+	    
         if (class_exists($class)) {
             $reflection = new \ReflectionClass($class);
             return $reflection->newInstanceArgs($declaration);
@@ -44,4 +57,5 @@ class Factory
 
         return Factory::instantiate($array);
     }
+	
 }

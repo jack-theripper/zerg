@@ -8,7 +8,7 @@ class SizeableTest extends \PHPUnit_Framework_TestCase
 {
     public function testWordLength()
     {
-        $field = new Int('semi_nibble');
+        $field = new IntType('semi_nibble');
         $this->assertEquals(2, $field->getSize());
 
         $field->setSize('short');
@@ -17,7 +17,7 @@ class SizeableTest extends \PHPUnit_Framework_TestCase
 
     public function testConditionalSize()
     {
-        $field = new Int('semi_nibble');
+        $field = new IntType('semi_nibble');
 
         $dataSet = new DataSet([
             'a' => [
@@ -47,7 +47,7 @@ class SizeableTest extends \PHPUnit_Framework_TestCase
 
     public function testSizeCallback()
     {
-        $field = new Int(function() {
+        $field = new IntType(function() {
             return 6;
         });
 

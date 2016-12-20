@@ -24,8 +24,8 @@ class PaddingTest extends \PHPUnit_Framework_TestCase
     {
 
         $stream = new StringStream("\xf3\xda\xf4\xdc\0");
-        $int = new Int($intSize);
-        $int2 = new Int($secondIntSeze);
+        $int = new IntType($intSize);
+        $int2 = new IntType($secondIntSeze);
         $padding = new Padding($padSize);
 
         $int->read($stream);

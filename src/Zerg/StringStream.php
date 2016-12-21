@@ -13,19 +13,20 @@ use Zerg\Buffer\BitBuffer;
 class StringStream implements StreamInterface
 {
     use StreamTrait;
-    
+	
 	/**
-     * Return new string stream that will read data form given string.
-     *
-     * @param string $string
-     */
-    public function __construct($string)
+	 * Return new string stream that will read data form given string.
+	 *
+	 * @param string $string
+	 * @param int    $buffer
+	 */
+    public function __construct($string, $buffer = self::BUFFER_BYTE)
     {
 	    $handle = fopen('php://memory', 'br+');
 	    fwrite($handle, $string);
 	    rewind($handle);
-	    
-    	$this->buffer = new BitBuffer($handle);
+	
+	    $this->buffer = $this->createBuffer($handle, $buffer);
     }
 
 }

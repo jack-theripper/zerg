@@ -13,6 +13,16 @@ interface StreamInterface
 {
 	
 	/**
+	 * @var int Byte buffer.
+	 */
+	const BUFFER_BYTE = 1;
+	
+	/**
+	 * @var int Bit buffer.
+	 */
+	const BUFFER_BIT = 2;
+	
+	/**
 	 * Getter for $buffer property.
 	 *
 	 * @return BufferInterface Object that reads data from file|memory stream.

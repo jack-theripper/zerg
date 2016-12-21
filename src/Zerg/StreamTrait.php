@@ -2,7 +2,9 @@
 
 namespace Zerg;
 
+use Zerg\Buffer\BitBuffer;
 use Zerg\Buffer\BufferInterface;
+use Zerg\Buffer\ByteBuffer;
 
 /**
  * Class StreamTrait
@@ -39,6 +41,34 @@ trait StreamTrait
 		$this->getBuffer()->setPosition($this->getBuffer()->getPosition() + $size);
 		
 		return $this;
+	}
+	
+	/**
+	 * Creates and returns an instance of the buffer.
+	 *
+	 * @param resource $handle
+	 * @param int $buffer
+	 *
+	 * @return \Zerg\Buffer\BufferInterface
+	 */
+	public function createBuffer(resource $handle, $buffer)
+	{
+		switch ($buffer)
+		{
+			case StreamInterface::BUFFER_BYTE:
+				
+				return new ByteBuffer($handle);
+				
+			break;
+			
+			case StreamInterface::BUFFER_BIT:
+				
+				return new BitBuffer($handle);
+				
+			break;
+		}
+		
+		throw new \InvalidArgumentException('The buffer type is not supported.');
 	}
 	
 }

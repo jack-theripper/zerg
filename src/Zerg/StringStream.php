@@ -15,6 +15,11 @@ class StringStream implements StreamInterface
     use StreamTrait;
 	
 	/**
+	 * @var resource
+	 */
+	protected $handle;
+	
+	/**
 	 * Return new string stream that will read data form given string.
 	 *
 	 * @param string $string
@@ -22,11 +27,22 @@ class StringStream implements StreamInterface
 	 */
     public function __construct($string, $buffer = self::BUFFER_BYTE)
     {
-	    $handle = fopen('php://memory', 'br+');
-	    fwrite($handle, $string);
-	    rewind($handle);
+	    $this->handle = fopen('php://memory', 'br+');
+	    
+	    fwrite($this->handle, $string);
+	    rewind($this->handle);
 	
-	    $this->buffer = $this->createBuffer($handle, $buffer);
+	    $this->buffer = $this->createBuffer($this->handle, $buffer);
     }
-
+	
+	/**
+	 * The destructor method.
+	 *
+	 * @return void
+	 */
+	public function __destruct()
+	{
+		fclose($this->handle);
+	}
+	
 }

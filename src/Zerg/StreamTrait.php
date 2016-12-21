@@ -51,7 +51,7 @@ trait StreamTrait
 	 *
 	 * @return \Zerg\Buffer\BufferInterface
 	 */
-	public function createBuffer(resource $handle, $buffer)
+	public function createBuffer($handle, $buffer)
 	{
 		switch ($buffer)
 		{

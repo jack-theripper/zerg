@@ -16,6 +16,11 @@ class FileStream implements StreamInterface
     use StreamTrait;
 	
 	/**
+	 * @var resource
+	 */
+	protected $handle;
+	
+	/**
 	 * Return new file stream that will read data form given file.
 	 *
 	 * @param string $path Path of file.
@@ -30,8 +35,18 @@ class FileStream implements StreamInterface
             throw new RuntimeException('File path not found.');
         }
 	    
-    	$handle = fopen($path, 'rb');
-        $this->buffer = new BitBuffer($handle);
+    	$this->handle = fopen($path, 'rb');
+        $this->buffer = new BitBuffer($this->handle);
     }
+	
+	/**
+	 * Closes an open file pointer.
+	 *
+	 * @return bool
+	 */
+	public function close()
+	{
+		return fclose($this->handle);
+	}
 	
 }

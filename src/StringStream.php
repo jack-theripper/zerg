@@ -2,6 +2,7 @@
 
 namespace Zerg;
 
+use OutOfBoundsException;
 use Zerg\Buffer\BufferInterface;
 
 class StringStream implements StreamInterface
@@ -42,9 +43,20 @@ class StringStream implements StreamInterface
 	 * @param int $bytesCount The number of bytes to read.
 	 *
 	 * @return string
+	 * @throws \OutOfBoundsException
 	 */
 	public function read($bytesCount = 1)
 	{
+		if ($bytesCount < 1)
+		{
+			return '';
+		}
+		
+		if ( ! $this->canReadBytes($bytesCount))
+		{
+			throw new OutOfBoundsException('Exceeds the boundary of the file.');
+		}
+		
 		$this->skip((int) $bytesCount);
 		
 		return substr($this->string, $this->getPosition() - $bytesCount, $bytesCount);

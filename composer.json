@@ -24,5 +24,11 @@
         "psr-4": {
             "Zerg\\": "src"
         }
+    },
+    "autoload-dev": {
+        "Zerg\\Tests\\": "tests"
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }

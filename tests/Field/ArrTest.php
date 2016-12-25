@@ -18,8 +18,9 @@ class ArrTest extends \PHPUnit_Framework_TestCase
 
     public function testUntilEof()
     {
-        $arr = new Arr(null, ['string', 'byte'], ['until' => 'eof']);
+        $arr = new Arr(null, ['string', 1], ['until' => 'eof']);
         $data = $arr->parse(new StringStream('12345'));
+	    
         $this->assertEquals(str_split('12345'), $data);
     }
 

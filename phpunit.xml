@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php" colors="true">
+<phpunit bootstrap="vendor/autoload.php" colors="true">
     <testsuites>
         <testsuite name="Zerg Test Suite">
-            <directory>tests/Zerg/</directory>
+            <directory>tests/</directory>
+            <exclude>tests/Field/ArrTest.php</exclude>
+            <exclude>tests/Field/CollectionTest.php</exclude>
+            <exclude>tests/Field/ConditionalTest.php</exclude>
+            <exclude>tests/Field/EnumTest.php</exclude>
+            <exclude>tests/Field/IntTypeTest.php</exclude>
+            <exclude>tests/Field/PaddingTest.php</exclude>
+            <exclude>tests/Field/ScalarTest.php</exclude>
+            <exclude>tests/Field/StringTypeTest.php</exclude>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">src/Zerg/</directory>
+            <directory suffix=".php">src/</directory>
         </whitelist>
     </filter>
 </phpunit>
